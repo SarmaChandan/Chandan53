@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <math.h>
+
+void findRoots(double a, double b, double c, double *root1, double *root2);
+
+int main() {
+    double a, b, c, root1, root2;
+    
+    printf("Enter coefficients a, b, and c: ");
+    scanf("%lf %lf %lf", &a, &b, &c);
+    
+    findRoots(a, b, c, &root1, &root2);
+    
+    if (isnan(root1) || isnan(root2)) {
+        printf("No real roots.\n");
+    } else {
+        printf("Root 1: %lf\n", root1);
+        printf("Root 2: %lf\n", root2);
+    }
+    
+    return 0;
+}
+
+void findRoots(double a, double b, double c, double *root1, double *root2) {
+    double discriminant = b * b - 4 * a * c;
+    
+    if (discriminant < 0) {
+        *root1 = *root2 = NAN;
+    } else {
+        *root1 = (-b + sqrt(discriminant)) / (2 * a);
+        *root2 = (-b - sqrt(discriminant)) / (2 * a);
+    }
+}
